@@ -1,0 +1,15 @@
+
+pip show beautifulsoup4
+
+使用如上命令，得到版本信息
+
+Name: beautifulsoup4
+Version: 4.12.3
+Summary: Screen-scraping library
+Home-page: https://www.crummy.com/software/BeautifulSoup/bs4/
+Author: 
+Author-email: Leonard Richardson <leonardr@segfault.org>
+License: MIT License
+Location: /home/master/.local/lib/python3.12/site-packages
+Requires: soupsieve
+Required-by: 

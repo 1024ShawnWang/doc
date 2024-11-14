@@ -1,0 +1,15 @@
+
+1. 添加远程仓库
+git remote add <shortname> <url> #url指向一个具体的仓库
+以后，你就能用 <shortname>来代替 <url>了
+
+2. 查看远程仓库
+git remote -v
+
+3. 克隆远程仓库
+git clone <url>(当然可以使用shortname，如果你已经添加某个特定的远程仓库) <dir_name>(如果不使用，将自动创建一个以 远程仓库名称最后一段 当名称 的 本地文件夹
+
+3. 从远程仓库中  拉取 和 抓取
+git fetch <remote> 访问远程仓库，从中拉取所有你还没有的数据
+git pull #拉取
+

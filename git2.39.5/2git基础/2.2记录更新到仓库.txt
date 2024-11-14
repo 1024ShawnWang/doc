@@ -1,0 +1,84 @@
+
+1. git仓库中的文件只有两种状态，跟踪和未跟踪
+1.1 已跟踪是指 被纳入版本管理的文件(快照中有它们的记录，应该是文件名追踪
+1.2 其他自然就是未跟踪
+
+2.如何跟踪 git add
+2.1.  git add 是递归命令
+
+3.如何暂存
+3.1 git add somefile(被自动标记为已修改的文件) , 这样就会进入到暂存状态
+
+3.2 add命令的理解应该是 精准地（毫无歧义）地将内容添加到 暂存区（待提交区），用来等待下次提交
+
+3.3 git status有如下信息的时候，分析文件状态
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:  #下面的文件，被追踪后，被修改了，被add到暂存区了，等待committed，之后就是被正式记录，用于版本回退
+  (use "git restore --staged <file>..." to unstage)
+	new file:   CONTRIBUTING.md
+	new file:   readme.txt
+
+Changes not staged for commit:  #被追踪，被修改，但是没有加入缓存区
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   CONTRIBUTING.md
+
+Untracked files: #未被追踪
+  (use "git add <file>..." to include in what will be committed)
+	test.txt
+
+4.状态简览
+git status命令的输出十分详细，但太繁琐
+#4.1 git status -s 或者 git status --short 可以得到更简单的输出
+#4.2 A 代表着被 add过，也就是进入了 暂存区
+#4.3 M 代表着被修改过
+#4.4 ??代表未被追踪
+#4.5 MM == MAM 先被修改，暂存，又被修改，未被暂存  *******从左到右理解
+#4.6 AM == 先被暂存，但是又被取出来修改了
+
+5.忽略文件
+5.1 创建 .gitignore 文件
+5.2 使用正则表达式来匹配文件名，来忽略指定文件
+例子:
+.[oa]  代表，任意.o 或者 .a 结尾的文件，都不会被统计
+5.3 其他略
+
+6.查看 已暂存 和 未暂存的修改 ( add过的文件和没有add过的）
+6.1 git-diff 比较当前目录文件  和 暂存区（待提交区） 的差异
+6.2 git-diff --staged  ??
+
+
+7.提交更新
+7.1 git commit
+7.1.1 接下需要提供 提交说明，来给这个版本做个注释
+7.2 或者直接使用 git commit -m "some markers" 来直接添加 提交说明
+
+7. 跳过使用暂存区域
+7.1 git commit -a 命令会把所有 已追踪的文件提交， 而不是提交 暂存区（待提交区域)
+
+8. 移除文件
+
+8.1 要从git仓库中移除文件，必需要 删除此文件，**且**从已跟踪文件清单中移除( 从暂存区域移除),然后提交。 
+8.1.1 使用git rm 命令，来实现这个两个过程 rm此文件**并且**( 从暂存区域移除 -> commit)， 这么两个过程
+
+8.2 如果只是使用 rm 命令，在工作目录中移除，运行 git status 时会显示“Changes not staged for commit”，但是由于 文件被删除， 你也无法 使用 git add <filename> 形式，将改变同步到 暂存区。
+8.2.1 此时， 你仍然需要运行  git rm <filename> 来在暂存区 移除此文件
+
+8.4 一旦 commit 后， 被git rm 的文件，就不会出现在下一个版本中了
+
+8.5 git rm 的文件，不会在git diff中显示
+
+8.6 如果只是打算下个版本移除此文件，但是工作区域仍然想保留 使用 git rm --cached <filename>
+
+
+9.移动文件
+9.1 想要在仓库中改名， 使用 git mv <old_name> <new_name>
+==
+mv <old_name> <new_name>
+git rm <old_name>
+git add <new_name>
+(因为要在 暂存区 更改， 所以多了两条命令)
+
+

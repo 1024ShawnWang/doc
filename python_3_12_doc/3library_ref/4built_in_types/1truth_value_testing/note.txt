@@ -1,0 +1,7 @@
+
+1.一般来说，一个对象总是被定义为 True，除非 这个对象的类实现了__bool__method返回false，或者实现了__len__method，并且返回0，
+
+2.常见类型的值
+2.1常量 None 和 False == false
+2.2数字类型， numeric type: 0, 0.0, 0j, Decimal(0), Fraction(0,1)
+2.3empty sequences and collections: '', (), [], {}, set(), range(0)

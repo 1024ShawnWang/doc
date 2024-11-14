@@ -1,0 +1,18 @@
+
+1.公钥传入github后，使用如下命令，将github加入到信任列表，并验证是否有权限写
+$ ssh -T git@github.com 
+
+2. 只有在git仓库中，才能添加远程主机
+
+3.添加远程主机, 并命名为origin
+git remote add origin git@github.com:1024ShawnWang/doc.git
+3.1注意使用冒号
+3.1注意.git
+
+4. 使用 git push origin master 将本地master指针指向的版本推送到 远程主机上。
+
+5. 使用 git fetch <remote_name>， 将取回远程主机的最新代码和分支引用（相当于获得了一个独立的提交对象，通常的名字是 <remote_name>/master)
+5.1 使用 git merge <remote_name>/master 将正在 远程主机的最新版本（ 独立的提交对象）融合到 本地正在工作的分支上
+
+6. git pull <remote_name> == 5 + 5.1
+6.1 所以，每次 push 之前， 先要 pull一下，确保不会覆盖别人的工作。（觉得自己在创新的情况下，先看下别人的工作）

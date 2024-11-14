@@ -1,0 +1,28 @@
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        43 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               16
+On-line CPU(s) list:                  0-15
+Vendor ID:                            AuthenticAMD
+Model name:                           AMD Ryzen 7 1700 Eight-Core Processor
+CPU family:                           23
+Model:                                1
+Thread(s) per core:                   2
+Core(s) per socket:                   8
+Socket(s):                            1
+Stepping:                             1
+Frequency boost:                      enabled
+CPU(s) scaling MHz:                   51%
+CPU max MHz:                          3000.0000
+CPU min MHz:                          1550.0000
+BogoMIPS:                             5988.45
+Virtualization:                       AMD-V
+L1d cache:                            256 KiB (8 instances)
+L1i cache:                            512 KiB (8 instances)
+L2 cache:                             4 MiB (8 instances)
+L3 cache:                             16 MiB (2 instances)
+
+#1. lscpu 可以看到 每个socket里面有8个cpu，我一共有一个socket，所以是八核的
+#2. 每个cpu可以带2两个线程，所以是十六线程的
+#3. cpu的型号是 r7 1700  r7的7指的是高端型号，1指的第一代，700是具体型号

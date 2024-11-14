@@ -1,0 +1,8 @@
+
+#1. float.as_integer_ratio()
+
+#2. float.is_integer()---->True 如果是有限整数，其他False
+
+#3. float.hex()  \0x...p
+
+#4. classmethod float.fromhex( s)  对比整型的from_bytes

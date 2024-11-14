@@ -1,0 +1,32 @@
+
+0. git 自带了git config 工具来帮助 设置控制 git 外观和行为，储存在三个位置
+Linux系统下：
+0.1 /etc/gitconfig 系统级别
+0.2 ~/.gitconfig 或者是 ~/.config/git/config 用户级别
+0.3 git仓库里的 .config文件 .../.git/config  仓库级别
+
+Windows系统下：
+0.4 C:\ProgramData\Git\config 系统级别
+0.5 $HOME目录下（具体用户目录下) .gitconfig 文件 用户级别
+0.6 合理怀疑，相同地，也有一个仓库级别
+
+
+0.7 不论哪个平台，每个级别都会覆盖上一个级别
+0.8 $ git config --list --show-origin 可以查看不同平台的配置文件所在地方
+
+1. 用户信息，
+
+1.1 使用如下命令，来全局配置 邮箱，它只需要一次，是系统级别的
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+
+1.2 还有项目级别的
+上面的命令中，放弃 --global命令，并且在 指定目录中运行命令， 就可以设置项目级别的 邮箱
+
+2. 文本编辑器
+$ git config --global core.editor emacs
+
+3. 检查配置信息
+$ git config --list
+3.1 只会打印最末端的变量值（也就是生效的变量值)
+3.2 git config <key>可以检查具体变量的值

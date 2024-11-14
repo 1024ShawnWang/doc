@@ -1,0 +1,51 @@
+1.分支的新建与合并
+
+1.1新建已经知道了 git checkout - b <branchname> 新建分支，并转移到此分支
+
+1.2合并分支 git merge <branchname> 这条命令将会 融合 <branchname>分支，到你目前正在工作的分支(head指向的分支
+1.2.1 如果顺着 你目前工作的分支继续往下走就是 <branchname>，那么合并它，就叫做 快进，（因为不会产生任何冲突
+        head
+         |
+         V
+--------master<------< (branchname)
+
+1.2.2 其他情况，涉及到三方合并:
+
+-------master<------< iss50
+        |
+        |___________< iss51
+这种情况， 先 快进到 iss50(也是merge命令)， 再 merge iss51，或者相反都可以
+
+1.2.2.1 这种情况下，有的时候 iss50 和 iss51就会有冲突 
+1.2.2.1.1所谓冲突就是:相同的绝对路径文件名(根目录就是git仓库)，但是内容不同)
+
+比如，此时conf.py(我自己刻意创造的冲突文件，文件内容就会变成下面的样子
+
+<<<<<<< HEAD
+printprintprint
+=======
+pri
+>>>>>>> iss2
+
+1.2.2.2 如何解决冲突？运行 git status， 查看此处合并的冲突文件，进入文件修改
+1.2.2.3 ====上下就是冲突的部分，选择留存一部分并删除另一部分（注意删除 <<<<, ====, >>>>>)
+1.2.2.3.1 或者删除全部，重新写一份，这就是最终法庭了
+例子如下
+master@Tutu:~/doc/git/3git分支/conflict_test$ git status
+On branch master
+You have unmerged paths.
+(fix conflicts and run "git commit")
+(use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+(use "git add <file>..." to mark resolution)
+     both added:      conf.py
+#可以看到 conf.py就是冲突文件
+
+1.2.2.4 解决完冲突，使用 git add <conflict_filename> 来提交 解决冲突的文件。你的状态如下:
+n branch master
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+1.2.2.5 使用 git commit 命令， 正式完成这次冲突的提交, 正式进入 git 仓库中
+
